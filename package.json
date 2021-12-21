@@ -1,0 +1,58 @@
+{
+  "name": "toggle-transition",
+  "version": "0.9.0",
+  "description": "Tiny vanilla JavaScript plugin enables you to show/hide/toggle DOM Element taking advantage of CSS transitions and without worrying about details.",
+  "main": "toggleTransition.js",
+  "scripts": {
+    "build": "make build",
+    "test": "jest",
+    "docs": "jsdoc -c ./jsdocs.config.js",
+    "use:npmReadme": "mv 'README.md' 'git.README.md' && mv 'npm.README.md' 'README.md'",
+    "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'",
+    "prepublishOnly": "run-s build use:npmReadme",
+    "postpublish": "npm run use:gitReadme",
+    "todo": "leasot -x --reporter markdown '**/*.js' --ignore 'node_modules/**/*.js' > TODOs.md",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denisaleman/toggleTransition.git"
+  },
+  "keywords": [
+    "toggle",
+    "show",
+    "hide",
+    "transitionEnd",
+    "ontransitionend",
+    "dom-manipulation",
+    "transitions",
+    "css",
+    "dom-element",
+    "vanilla",
+    "javascript"
+  ],
+  "files": [
+    "toggleTransition.js",
+    "toggleTransition.min.js"
+  ],
+  "author": "Denis Alemán",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denisaleman/toggleTransition/issues"
+  },
+  "homepage": "https://github.com/denisaleman/toggleTransition#readme",
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.5",
+    "jsdoc": "^3.6.7",
+    "leasot": "^12.0.0",
+    "lodash": "^4.17.21",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "puppeteer": "^13.0.0",
+    "standard-version": "^9.3.2",
+    "uglify-js": "^3.14.5"
+  }
+}

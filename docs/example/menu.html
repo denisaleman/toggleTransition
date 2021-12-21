@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>toggleTransitions - Dropdown Menu</title>
+    <script src="https://unpkg.com/toggle-transition@latest/toggleTransition.min.js"></script>
+  </head>
+  <body>
+    <style type="text/css">
+      body {
+        background-color: whitesmoke;
+      }
+
+      .menu {
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .menu__item {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .menu__sub-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        opacity: 0;
+        transform: translateY(10px) scale(1.0);
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      .menu__sub-menu_is_hidden {
+        opacity: 0;
+        transform: translateY(10px) scale(0.90);
+      }
+
+      .menu__sub-menu_is_shown {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+
+      .link {
+        font-family: sans-serif;
+      }
+
+      .menu__item .link {
+        padding: 10px 20px;
+        display: flex;
+      }
+    </style>
+
+    <div id="menu" class="menu">
+      <div class="menu__item"><a class="link" href="./menu.html">Home</a></div>
+      <div class="menu__item menu__item_has_sub-menu">
+        <a class="link" href="./menu.html">Services</a>
+        <div class="menu__sub-menu menu__sub-menu_is_hidden">
+          <div class="menu__item">
+            <a class="link" href="./menu.html">Training</a>
+          </div>
+          <div class="menu__item">
+            <a class="link" href="./menu.html">Washing</a>
+          </div>
+          <div class="menu__item">
+            <a class="link" href="./menu.html">Grooming</a>
+          </div>
+        </div>
+      </div>
+      <div class="menu__item"><a class="link" href="./menu.html">About</a></div>
+    </div>
+
+    <script>
+      var submenus = document.querySelectorAll('.menu__sub-menu');
+      var toggleTransitionInstances = Array();
+      var options = {
+        showTransitionClassname: "menu__sub-menu_is_shown",
+        hideTransitionClassname: "menu__sub-menu_is_hidden",
+        manageVisibilityWith: "visibility",
+      };
+
+      submenus.forEach(function(submenu) {
+        var instance = new ToggleTransition(submenu, options);
+
+        instance
+          .on('mouseover', function(el) { return el.parentElement; }, 'show')
+          .on('mouseout', function(el) { return el.parentElement; }, 'hide');
+      });
+    </script>
+  </body>
+</html>
