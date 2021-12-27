@@ -1,6 +1,6 @@
 {
   "name": "toggle-transition",
-  "version": "0.9.0",
+  "version": "0.0.0-development",
   "description": "Tiny vanilla JavaScript plugin enables you to show/hide/toggle DOM Element taking advantage of CSS transitions and without worrying about details.",
   "main": "toggleTransition.js",
   "scripts": {
@@ -12,11 +12,11 @@
     "prepublishOnly": "run-s build use:npmReadme",
     "postpublish": "npm run use:gitReadme",
     "todo": "leasot -x --reporter markdown '**/*.js' --ignore 'node_modules/**/*.js' > TODOs.md",
-    "release": "standard-version"
+    "semantic-release": "semantic-release --branches master"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/denisaleman/toggleTransition.git"
+    "url": "https://github.com/denisaleman/toggleTransition.git"
   },
   "keywords": [
     "toggle",
@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/denisaleman/toggleTransition#readme",
   "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -52,7 +53,12 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "puppeteer": "^13.0.0",
-    "standard-version": "^9.3.2",
+    "semantic-release": "^18.0.1",
     "uglify-js": "^3.14.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
