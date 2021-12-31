@@ -1,7 +1,7 @@
 /**
  * toggleTransition.js
  *
- * Tiny vanilla Javascript plugin that helps you to show/hide/toggle DOM Element with CSS transitions without
+ * Tiny vanilla JavaScript plugin that helps you to show/hide/toggle DOM Element with CSS transitions without
  * worrying about visibility of the element (i.e. switching display:none or visibility:hidden) when
  * transition ends.
  *
@@ -437,7 +437,7 @@
 			 * instance.on('mouseover', function (el) { return el.parentElement; }, 'show');
 			 *
 			 * @example
-			 * Bind specific function to node defined with selecor '.button'.
+			 * Bind specific function to node defined with selector '.button'.
 			 * instance.on('click', '.button', function () { alert('hello world!'); });
 			 *
 			 * @param  {string}                         event   An event name.
@@ -456,7 +456,7 @@
 			},
 
 			/**
-			 * Deattach event handler function of event from a node.
+			 * Detach event handler function of event from a node.
 			 *
 			 * Basically, it's opposite to on() method.
 			 *
