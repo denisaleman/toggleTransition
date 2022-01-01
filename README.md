@@ -8,17 +8,21 @@ Tiny vanilla JavaScript plugin that enables you to show/hide/toggle DOM Element 
 ![NPM](https://img.shields.io/npm/l/toggle-transition)
 ![npm](https://img.shields.io/npm/dw/toggle-transition?logo=npm)
 
-## What it actually does
+## Problem
 
-CSS 3 transitions don't apply to the `display` property. In case one looks to show or hide an element, its `display` property cannot be css-transitioned from `display:none` to the element's initial value and vice versa. toggleTransition.js solves the problem.
+CSS3 transition doesn't work with `display` property.
 
-The plugin manages the visibility of the element: it timely switches `display` property to `none` when the element's transition completes and back when the element's transition is about to start.
+> CSS3 transitions don't apply to the `display` property, i.e., you can't do any sort of transition from `display: none` to `display: block` (or any combination).
 
-If the element is to be shown, the plugin sets its `style.display` to `null`, so that the element gets visible. After which the plugin adds the class that runs CSS transition and the element appears smoothly.
+[Transitions on the CSS display property](https://stackoverflow.com/questions/3331353/transitions-on-the-css-display-property) on StackOverflow.
 
-If the element is to be hidden, it defers setting `display:none`, making use of `onTransitionEnd` event, and runs CSS transition first.
+## How it solves the problem
 
-["Transitions on the CSS display property"](https://stackoverflow.com/questions/3331353/transitions-on-the-css-display-property) on Stackoverflow.
+The plugin shows/hides an element with CSS3 transition effects and manages its `display` property behind the scenes.
+
+In case of hidding the element, `toggleTransition.js` sets element's `display` property to `none` right after transition ends, making use of `onTransitionEnd` event. 
+
+If case of showing the element, it sets the `display` back to initial state. Then CSS transition runs and the element appears smoothly.
 
 ## In Action
 
