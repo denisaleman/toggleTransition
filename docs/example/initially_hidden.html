@@ -48,7 +48,6 @@
       const animatedElement = new ToggleTransition(document.getElementById('animatedElement'), {
         showTransitionClassname: "popover_is_shown",
         hideTransitionClassname: "popover_is_hidden",
-        manageVisibilityWith: "visibility",
         onShowTransitionEnd: function (e, x) {
           console.log("after show transition callback", e, x);
         },

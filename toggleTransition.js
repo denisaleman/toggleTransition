@@ -46,7 +46,7 @@
 	 */
 	ToggleTransition.prototype = (function () {
 		var defaults = {
-			manageVisibilityWith: "visibility",
+			manageVisibilityWith: "display",
 		};
 
 		/**
