@@ -7,10 +7,6 @@
     "build": "make build",
     "test": "jest",
     "docs": "jsdoc -c ./jsdocs.config.js",
-    "use:npmReadme": "mv 'README.md' 'git.README.md' && mv 'npm.README.md' 'README.md'",
-    "use:gitReadme": "mv 'README.md' 'npm.README.md' && mv 'git.README.md' 'README.md'",
-    "prepublishOnly": "run-s build use:npmReadme",
-    "postpublish": "npm run use:gitReadme",
     "todo": "leasot -x --reporter markdown '**/*.js' --ignore 'node_modules/**/*.js' > TODOs.md",
     "semantic-release": "semantic-release --branches master"
   },
@@ -50,7 +46,6 @@
     "jsdoc": "^3.6.7",
     "leasot": "^12.0.0",
     "lodash": "^4.17.21",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "puppeteer": "^13.0.0",
     "semantic-release": "^18.0.1",
