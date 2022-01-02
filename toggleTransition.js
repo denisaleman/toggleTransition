@@ -216,9 +216,7 @@
 					}
 				}
 
-				/**
-				 * @todo throw 'TransitionEnd event is not supported in this browser';
-				 */
+				throw 'TransitionEnd event is not supported in this browser.';
 			}
 		};
 
