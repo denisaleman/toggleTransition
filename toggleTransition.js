@@ -285,9 +285,6 @@
 			if (typeof target === "string") {
 				target = document.querySelectorAll(target);
 			} else if (typeof target === "function") {
-				/**
-				 * @todo Add check what comes from this callback
-				 */
 				target = target.call(this, this.$element);
 			}
 			if (action === "hide" || action === "show" || action === "toggle") {
