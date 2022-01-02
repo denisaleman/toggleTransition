@@ -1,6 +1,6 @@
 {
   "name": "toggle-transition",
-  "version": "0.0.0-development",
+  "version": "1.0.1",
   "description": "Tiny vanilla JavaScript plugin enables you to show/hide/toggle DOM Element taking advantage of CSS transitions and without worrying about details.",
   "main": "toggleTransition.js",
   "scripts": {
