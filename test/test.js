@@ -207,28 +207,48 @@ describe("Initially hidden element", () => {
   });
 
   test("nothing gets broken if toggle() invokes quickly multiple times", async () => {
-    const elementHasClassResults = [];
-
     const { browser, page } = await puppeteerInitAndGoto(`file://${__dirname}/../docs/example/initially_hidden.html`);
 
-    const element = await page.$("#animatedElement");
+    const element = "#animatedElement";
+    const button = "#toggleAnimatedElement";
 
-    await page.evaluate(() => {
-      for (var i = 20; i >= 0; i--) {
-        animatedElement.toggle();
+    const rect = await page.evaluate((selector) => {
+      const element = document.querySelector(selector);
+      if (!element) return null;
+      const { x, y } = element.getBoundingClientRect();
+      return { x, y };
+    }, button);
+
+    if (rect) {
+      for (let i = 11; i >= 0; i--) {
+        await page.mouse.click(rect.x, rect.y, { clickCount: 1 });
+        await page.waitForTimeout(10);
       }
-    });
+    } else {
+      console.error("Element Not Found");
+    }
 
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
 
-    await elementHasClassResults.push(await elementHasClass(element, "popover_is_shown"));
-    await elementHasClassResults.push(await elementHasClass(element, "popover_is_hidden"));
-    /**
-     * @todo Add check whether element has `style="display: none"` or `style="visibility: hidden"` with accordance to the `manageVisibilityWith` setting.
-     */
+    expect(await page.$eval(element, (elem) => elem.classList.contains("popover_is_shown"))).toBeFalsy();
+    expect(await page.$eval(element, (elem) => elem.classList.contains("popover_is_hidden"))).toBeTruthy();
+
+    let manageVisibilityWithSetting = await page.evaluate(() => animatedElement.settings.manageVisibilityWith);
+    
+    switch (manageVisibilityWithSetting) {
+      case "display" :
+        var expectedValue = "none"
+      break
+      case "visibility" :
+        var expectedValue = "hidden"
+      break  
+    }
+
+    expect(await page.$eval(element, (elem, prop) => {
+        return window.getComputedStyle(elem).getPropertyValue(prop)
+      }, manageVisibilityWithSetting)
+    ).toBe(expectedValue)
 
     await browser.close();
-
-    expect(elementHasClassResults).toStrictEqual([true, false]);
   });
 });
