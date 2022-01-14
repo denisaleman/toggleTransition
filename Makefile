@@ -22,8 +22,9 @@ test:
 	make --no-print-directory lint && npm test 
 
 build:
+	npm run todo
 	npx uglifyjs toggleTransition.js --compress --mangle --source-map --output toggleTransition.min.js
-	sed -i "1s/^/\/*! toggleTransition 0.9.0 - MIT license - Copyright 2007-2021 Denis Alemán *\/\n/" toggleTransition.min.js
+	sed -i "1s/^/\/*! toggleTransition v0.9.0 - MIT license - Copyright 2007-2022 Denis Alemán *\/\n/" toggleTransition.min.js
 
 docs:
 	rm -rf ./docs && npm run generate-docs
