@@ -49,7 +49,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.5",
-    "jsdoc": "^3.6.7",
     "leasot": "^12.0.0",
     "lodash": "^4.17.21",
     "prettier": "^2.5.1",
