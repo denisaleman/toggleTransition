@@ -55,70 +55,6 @@
 		 */
 
 		/**
-		 * Add a single class to the element.
-		 *
-		 * @param   {HTMLElement} el        Element
-		 * @param   {string}      className Class name to add.
-		 * @return  {HTMLElement}           Element
-		 */
-		var _addClass = function (el, className) {
-			if (el.classList) {
-				el.classList.add(className);
-			} else {
-				var current = el.className,
-					found = false;
-				var all = current.split(" ");
-				for (var i = 0; i < all.length, !found; i++) {
-					found = all[i] === className;
-				}
-				if (!found) {
-					if (current === "") {
-						el.className = className;
-					} else {
-						el.className += " " + className;
-					}
-				}
-			}
-
-			return el;
-		};
-
-		/**
-		 * Remove a single class from the element.
-		 *
-		 * @param   {HTMLElement} el        Element
-		 * @param   {string}      className Class name to remove.
-		 * @return  {HTMLElement}           Element
-		 */
-		var _removeClass = function (el, className) {
-			if (el.classList) {
-				el.classList.remove(className);
-			} else {
-				el.className = el.className.replace(
-					new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"),
-					" ",
-				);
-			}
-
-			return el;
-		};
-
-		/**
-		 * Determine whether the element has given class.
-		 *
-		 * @param   {HTMLElement} el        Element
-		 * @param   {string}      className Class name to check.
-		 * @return  {Boolean}               Return true if element has class, otherwise false.
-		 */
-		var _hasClass = function (el, className) {
-			if (el.classList) {
-				return el.classList.contains(className);
-			} else {
-				return new RegExp("(^| )" + className + "( |$)", "gi").test(el.className);
-			}
-		};
-
-		/**
 		 * Create a new custom event of type CustomEvent.
 		 *
 		 * @param  {string} eventName   Name of the event to be created.
@@ -245,8 +181,8 @@
 				}
 
 				return _ifToggleSettingsOk.call(this, function () {
-					var hasClassHidden = _hasClass(this.$element, this.settings.hideTransitionClassname);
-					var hasClassShown = _hasClass(this.$element, this.settings.showTransitionClassname);
+					var hasClassHidden = this.$element.classList.contains(this.settings.hideTransitionClassname);
+					var hasClassShown = this.$element.classList.contains(this.settings.showTransitionClassname);
 					if (!hasClassHidden && !hasClassShown) {
 						throw new Error(
 							"Element must have one of the classes ['" +
@@ -339,7 +275,7 @@
 					_onTransitionEnd();
 					this.onTransitionEnd = undefined;
 				}.bind(this);
-				_addClass(this.$element, transitionClassname);
+				this.$element.classList.add(transitionClassname);
 				if (typeof _onTransitionEnd === "function") {
 					this.$element.addEventListener(_supportedTransitionendEvent(), this.onTransitionEnd, {
 						once: true,
@@ -357,7 +293,7 @@
 			 */
 			show: function (callback) {
 				_ifToggleSettingsOk.call(this, function () {
-					_removeClass(this.$element, this.settings.hideTransitionClassname);
+					this.$element.classList.remove(this.settings.hideTransitionClassname);
 					_updateIsHidden.call(
 						this,
 						this.$element,
@@ -389,7 +325,7 @@
 			 */
 			hide: function (callback) {
 				_ifToggleSettingsOk.call(this, function () {
-					_removeClass(this.$element, this.settings.showTransitionClassname);
+					this.$element.classList.remove(this.settings.showTransitionClassname);
 					this.transition(
 						this.settings.hideTransitionClassname,
 						function () {
